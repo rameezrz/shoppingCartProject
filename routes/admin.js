@@ -3,12 +3,18 @@ var router = express.Router();
 var productHelper = require('../helpers/product-helpers');
 const productHelpers = require('../helpers/product-helpers');
 const { response } = require('express');
+// const verifyAdminLogin = (req, res, next) => {
+// 	if (req.session.admin.loggedIn) {
+// 	  next()
+// 	} else {
+// 	  res.redirect('admin/login')
+// 	}
+//   }
 
 /* GET users listing. */
+
 router.get('/', function(req, res, next) {
 	productHelpers.getAllProducts().then((products)=>{
-		console.log(products);
-		
 		res.render('admin/view-products', {admin: true,products})
 	})
 });
@@ -56,5 +62,6 @@ router.post('/edit-product/:id',(req,res)=>{
 		}
 	})
 })
+
 
 module.exports = router;
